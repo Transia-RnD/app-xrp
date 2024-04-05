@@ -54,6 +54,12 @@ void format_field(field_t* field, field_value_t* dst) {
         case STI_CURRENCY:
             currency_formatter(field, dst);
             break;
+        case STI_ISSUE:
+            issue_formatter(field, dst);
+            break;
+        // case STI_XCHAIN_BRIDGE:
+        //     xchain_bridge_formatter(field, dst);
+        //     break;
         default:
             strncpy(dst->buf, "[Not implemented]", sizeof(dst->buf));
             break;

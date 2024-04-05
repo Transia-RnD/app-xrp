@@ -50,10 +50,18 @@ static const char* resolve_transaction_name(uint16_t value) {
             return "Cancel Escrow";
         case TRANSACTION_SET_REGULAR_KEY:
             return "Set Regular Key";
+        // case TRANSACTION_NICKNAME_SET:
+        //     return "Nickname Set";
         case TRANSACTION_OFFER_CREATE:
             return "Create Offer";
         case TRANSACTION_OFFER_CANCEL:
             return "Cancel Offer";
+        // case TRANSACTION_CONTRACT:
+        //     return "Contract";
+        case TRANSACTION_TICKET_CREATE:
+            return "Ticket Create";
+        case TRANSACTION_TICKET_CANCEL:
+            return "Ticket Cancel";
         case TRANSACTION_SIGNER_LIST_SET:
             return "Set Signer List";
         case TRANSACTION_PAYMENT_CHANNEL_CREATE:
@@ -74,6 +82,50 @@ static const char* resolve_transaction_name(uint16_t value) {
             return "Set Trust Line";
         case TRANSACTION_ACCOUNT_DELETE:
             return "Delete Account";
+        case TRANSACTION_NFTOKEN_MINT:
+            return "NFToken Mint";
+        case TRANSACTION_NFTOKEN_BURN:
+            return "NFToken Burn";
+        case TRANSACTION_NFTOKEN_CREATE_OFFER:
+            return "NFToken Create Offer";
+        case TRANSACTION_NFTOKEN_CANCEL_OFFER:
+            return "NFToken Cancel Offer";
+        case TRANSACTION_NFTOKEN_ACCEPT_OFFER:
+            return "NFToken Accept Offer";
+        case TRANSACTION_CLAWBACK:
+            return "Clawback";
+        case TRANSACTION_AMM_CREATE:
+            return "AMM Create";
+        case TRANSACTION_AMM_DEPOSIT:
+            return "AMM Deposit";
+        case TRANSACTION_AMM_WITHDRAW:
+            return "AMM Withdraw";
+        case TRANSACTION_AMM_VOTE:
+            return "AMM Vote";
+        case TRANSACTION_AMM_BID:
+            return "AMM Bid";
+        case TRANSACTION_AMM_DELETE:
+            return "AMM Delete";
+        case TRANSACTION_XCHAIN_CREATE_CLAIM_ID:
+            return "XChain Create Claim ID";
+        case TRANSACTION_XCHAIN_COMMIT:
+            return "XChain Commit";
+        case TRANSACTION_XCHAIN_CLAIM:
+            return "XChain Claim";
+        case TRANSACTION_XCHAIN_ACCOUNT_CREATE_COMMIT:
+            return "XChain Account Create Commit";
+        case TRANSACTION_XCHAIN_ADD_CLAIM_ATTESTATION:
+            return "XChain Add Claim Attestation";
+        case TRANSACTION_XCHAIN_ADD_ACCOUNT_CREATE_ATTESTATION:
+            return "XChain Add Account Create Attestation";
+        case TRANSACTION_XCHAIN_MODIFY_BRIDGE:
+            return "XChain Modify Bridge";
+        case TRANSACTION_XCHAIN_CREATE_BRIDGE:
+            return "XChain Create Bridge";
+        case TRANSACTION_DID_SET:
+            return "Did Set";
+        case TRANSACTION_DID_DELETE:
+            return "Did Delete";
         default:
             return "Unknown";
     }
@@ -195,4 +247,32 @@ void account_formatter(field_t* field, field_value_t* dst) {
         memmove(dst->buf, address, addr_length);
         dst->buf[addr_length] = '\x00';
     }
+}
+
+void issue_formatter(field_t* field, field_value_t* dst) {
+    // Temporary field_value_t for holding formatted account and currency
+    field_value_t temp_dst_account;
+    field_value_t temp_dst_currency;
+
+    // Temporary field_t for account and currency
+    field_t temp_field_account;
+    field_t temp_field_currency;
+
+    // Set up the temporary field for the account part
+    temp_field_account.data_type = STI_ACCOUNT;
+    temp_field_account.data.ptr = field->data.ptr; // Point to the account part of the issue
+
+    // Format the account part
+    account_formatter(&temp_field_account, &temp_dst_account);
+
+    // Set up the temporary field for the currency part
+    temp_field_currency.data_type = STI_CURRENCY;
+    temp_field_currency.data.ptr = (uint8_t*)field->data.ptr + 20; // Point to the currency part of the issue
+
+    // Format the currency part
+    currency_formatter(&temp_field_currency, &temp_dst_currency);
+
+    // Concatenate the formatted account and currency into the destination buffer
+    // Ensure that the concatenation does not exceed the buffer size
+    snprintf(dst->buf, sizeof(dst->buf), "%s %s", temp_dst_account.buf, temp_dst_currency.buf);
 }
