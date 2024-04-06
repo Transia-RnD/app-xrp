@@ -244,6 +244,98 @@ static void format_payment_channel_claim_flags(uint32_t value, field_value_t *ds
     }
 }
 
+static void format_nftoken_mint_flags(uint32_t value, field_value_t *dst) {
+// NFTokenMint flags
+#define TF_BURNABLE 0x00000001u
+#define TF_ONLY_XRP 0x00000002u
+// @deprecated
+// #define TF_TRUSTLINE 0x00000004u
+#define TF_TRANSFERABLE 0x00000008u
+
+    size_t offset = 0;
+    if (HAS_FLAG(value, TF_BURNABLE)) {
+        offset = append_item(dst, offset, "Burnable");
+    }
+    if (HAS_FLAG(value, TF_ONLY_XRP)) {
+        offset = append_item(dst, offset, "Only XRP");
+    }
+    // @deprecated
+    // if (HAS_FLAG(value, TF_TRUSTLINE)) {
+    //     offset = append_item(dst, offset, "Auto Trustline");
+    // }
+    if (HAS_FLAG(value, TF_TRANSFERABLE)) {
+        offset = append_item(dst, offset, "Transferable");
+    }
+}
+
+static void format_nftoken_create_offer_flags(uint32_t value, field_value_t *dst) {
+// NFTokenCreateOffer flags
+#define TF_SELL_NFTOKEN 0x00000001u
+
+    size_t offset = 0;
+    if (HAS_FLAG(value, TF_SELL_NFTOKEN)) {
+        offset = append_item(dst, offset, "Sell");
+    }
+}
+
+#define TF_LP_TOKEN 0x00010000u
+#define TF_WITHDRAW_ALL 0x00020000u
+#define TF_ONE_ASSET_WITHDRAW_ALL 0x00040000u
+#define TF_SINGLE_ASSET 0x00080000u
+#define TF_TWO_ASSET 0x00100000u
+#define TF_ONE_ASSET_LP_TOKEN 0x00200000u
+#define TF_LIMIT_LP_TOKEN 0x00400000u
+#define TF_TWO_ASSET_IF_EMPTY 0x00800000u
+
+static void format_amm_deposit_flags(uint32_t value, field_value_t *dst) {
+// AMMDeposit flags
+    size_t offset = 0;
+    if (HAS_FLAG(value, TF_LP_TOKEN)) {
+        offset = append_item(dst, offset, "LP Token");
+    }
+    if (HAS_FLAG(value, TF_SINGLE_ASSET)) {
+        offset = append_item(dst, offset, "Single Asset");
+    }
+    if (HAS_FLAG(value, TF_TWO_ASSET)) {
+        offset = append_item(dst, offset, "Two Asset");
+    }
+    if (HAS_FLAG(value, TF_ONE_ASSET_LP_TOKEN)) {
+        offset = append_item(dst, offset, "One Asset LP Token");
+    }
+    if (HAS_FLAG(value, TF_LIMIT_LP_TOKEN)) {
+        offset = append_item(dst, offset, "Limit LP Token");
+    }
+    if (HAS_FLAG(value, TF_TWO_ASSET_IF_EMPTY)) {
+        offset = append_item(dst, offset, "Two Asset If Empty");
+    }
+}
+
+static void format_amm_withdraw_flags(uint32_t value, field_value_t *dst) {
+// AMMWithdraw flags
+    size_t offset = 0;
+    if (HAS_FLAG(value, TF_LP_TOKEN)) {
+        offset = append_item(dst, offset, "LP Token");
+    }
+    if (HAS_FLAG(value, TF_SINGLE_ASSET)) {
+        offset = append_item(dst, offset, "Single Asset");
+    }
+    if (HAS_FLAG(value, TF_TWO_ASSET)) {
+        offset = append_item(dst, offset, "Two Asset");
+    }
+    if (HAS_FLAG(value, TF_ONE_ASSET_LP_TOKEN)) {
+        offset = append_item(dst, offset, "One Asset LP Token");
+    }
+    if (HAS_FLAG(value, TF_LIMIT_LP_TOKEN)) {
+        offset = append_item(dst, offset, "Limit LP Token");
+    }
+    if (HAS_FLAG(value, TF_WITHDRAW_ALL)) {
+        offset = append_item(dst, offset, "Withdraw All");
+    }
+    if (HAS_FLAG(value, TF_ONE_ASSET_WITHDRAW_ALL)) {
+        offset = append_item(dst, offset, "One Asset Withdraw All");
+    }
+}
+
 void format_flags(field_t *field, field_value_t *dst) {
     uint32_t value = field->data.u32;
     switch (parse_context.transaction_type) {
@@ -261,6 +353,18 @@ void format_flags(field_t *field, field_value_t *dst) {
             break;
         case TRANSACTION_PAYMENT_CHANNEL_CLAIM:
             format_payment_channel_claim_flags(value, dst);
+            break;
+        case TRANSACTION_NFTOKEN_MINT:
+            format_nftoken_mint_flags(value, dst);
+            break;
+        case TRANSACTION_NFTOKEN_CREATE_OFFER:
+            format_nftoken_create_offer_flags(value, dst);
+            break;
+        case TRANSACTION_AMM_DEPOSIT:
+            format_amm_deposit_flags(value, dst);
+            break;
+        case TRANSACTION_AMM_WITHDRAW:
+            format_amm_withdraw_flags(value, dst);
             break;
         default:
             snprintf(dst->buf,
