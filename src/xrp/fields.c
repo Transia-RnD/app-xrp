@@ -40,16 +40,12 @@ const char *resolve_field_name(field_t *field) {
                 return "Signer Weight";
             case 4:
                 return "Transfer Fee";
+            case 5:
+                return "Trading Fee";
+            case 6:
+                return "Discount Fee";
             case 16:
                 return "Version";
-            // case 17:
-            //     return "Hook State Change Count";
-            // case 18:
-            //     return "Hook Emit Count";
-            // case 19:
-            //     return "Hook Execution Index";
-            // case 20:
-            //     return "Hook Api Version";
         }
     }
 
