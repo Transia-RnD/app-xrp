@@ -19,6 +19,7 @@
 #include <string.h>
 
 #include "general.h"
+#include "amount.h"
 #include "readers.h"
 #include "fmt.h"
 #include "flags.h"
@@ -38,6 +39,8 @@ void uint8_formatter(field_t* field, field_value_t* dst) {
 
 static const char* resolve_transaction_name(uint16_t value) {
     switch (value) {
+        case TRANSACTION_INVALID:
+            return "Sign In";
         case TRANSACTION_PAYMENT:
             return "Payment";
         case TRANSACTION_ESCROW_CREATE:
@@ -247,32 +250,4 @@ void account_formatter(field_t* field, field_value_t* dst) {
         memmove(dst->buf, address, addr_length);
         dst->buf[addr_length] = '\x00';
     }
-}
-
-void issue_formatter(field_t* field, field_value_t* dst) {
-    // Temporary field_value_t for holding formatted account and currency
-    field_value_t temp_dst_account;
-    field_value_t temp_dst_currency;
-
-    // Temporary field_t for account and currency
-    field_t temp_field_account;
-    field_t temp_field_currency;
-
-    // Set up the temporary field for the account part
-    temp_field_account.data_type = STI_ACCOUNT;
-    temp_field_account.data.ptr = field->data.ptr; // Point to the account part of the issue
-
-    // Format the account part
-    account_formatter(&temp_field_account, &temp_dst_account);
-
-    // Set up the temporary field for the currency part
-    temp_field_currency.data_type = STI_CURRENCY;
-    temp_field_currency.data.ptr = (uint8_t*)field->data.ptr + 20; // Point to the currency part of the issue
-
-    // Format the currency part
-    currency_formatter(&temp_field_currency, &temp_dst_currency);
-
-    // Concatenate the formatted account and currency into the destination buffer
-    // Ensure that the concatenation does not exceed the buffer size
-    snprintf(dst->buf, sizeof(dst->buf), "%s %s", temp_dst_account.buf, temp_dst_currency.buf);
 }
