@@ -19,7 +19,6 @@
 #include <string.h>
 
 #include "general.h"
-#include "amount.h"
 #include "readers.h"
 #include "fmt.h"
 #include "flags.h"
