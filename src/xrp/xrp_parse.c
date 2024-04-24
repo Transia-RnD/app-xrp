@@ -181,10 +181,6 @@ err_t read_amount(parseContext_t *context, field_t *field) {
     uint8_t first_byte;
     err_t err;
 
-    PRINTF("READ AMOUNT \n");
-    PRINTF("Field ID %d \n", field->id);
-    PRINTF("Field Length %d \n", field->length);
-
     CHECK(peak_next_byte(context, &first_byte));
     if ((first_byte >> 7u) == 0) {
         CHECK(read_fixed_size_field(context, field, XRP_AMOUNT_LEN));
@@ -214,11 +210,7 @@ err_t read_amount(parseContext_t *context, field_t *field) {
 err_t read_issue(parseContext_t *context, field_t *field) {
     err_t err;
 
-    PRINTF("Read Issue \n");
-    PRINTF("Field ID %d \n", field->id);
-
     if (!is_all_zeros(context->data + context->offset, 20)) {
-        PRINTF("Has Issuer \n");
         CHECK(read_fixed_size_field(context, field, XRP_ISSUE_SIZE));
         field_t *issuer;
         CHECK(append_new_field(context, &issuer));
@@ -227,13 +219,67 @@ err_t read_issue(parseContext_t *context, field_t *field) {
         issuer->data.account = (xrp_account_t *) (field->data.ptr + 20);
         issuer->length = XRP_ACCOUNT_SIZE;
     } else {
-        PRINTF("No Issuer \n");
         CHECK(read_fixed_size_field(context, field, XRP_CURRENCY_SIZE));
     }
+    
+    return err;
+}
 
+err_t read_xchain(parseContext_t *context, field_t *field) {
+    err_t err;
 
-    PRINTF("Finished Issue \n");
+    CHECK(read_fixed_size_field(context, field, XRP_ACCOUNT_SIZE + 1));
+    field_t *locking_door;
+    CHECK(append_new_field(context, &locking_door));
+    locking_door->data_type = STI_ACCOUNT;
+    locking_door->id = XRP_ACCOUNT_LOCKING_CHAIN_DOOR;
+    locking_door->data.account = (xrp_account_t *) (field->data.ptr + 1);
+    locking_door->length = XRP_ACCOUNT_SIZE;
 
+    if (!is_all_zeros(context->data + context->offset, 20)) {
+        CHECK(read_fixed_size_field(context, field, XRP_ISSUE_SIZE));
+        field_t *issuer;
+        CHECK(append_new_field(context, &issuer));
+        issuer->data_type = STI_ACCOUNT;
+        issuer->id = XRP_ACCOUNT_ISSUER;
+        issuer->data.account = (xrp_account_t *) (field->data.ptr);
+        issuer->length = XRP_ACCOUNT_SIZE;
+    } else {
+        CHECK(read_fixed_size_field(context, field, XRP_CURRENCY_SIZE));
+        field_t *currency;
+        CHECK(append_new_field(context, &currency));
+        currency->data_type = STI_CURRENCY;
+        currency->id = XRP_CURRENCY_CURRENCY;
+        currency->data.currency = (xrp_currency_t *) (field->data.ptr);
+        currency->length = XRP_CURRENCY_SIZE;
+    }
+
+    CHECK(read_fixed_size_field(context, field, XRP_ACCOUNT_SIZE + 1));
+    field_t *issuing_door;
+    CHECK(append_new_field(context, &issuing_door));
+    issuing_door->data_type = STI_ACCOUNT;
+    issuing_door->id = XRP_ACCOUNT_ISSUING_CHAIN_DOOR;
+    issuing_door->data.account = (xrp_account_t *) (field->data.ptr + 1);
+    issuing_door->length = XRP_ACCOUNT_SIZE;
+
+    if (!is_all_zeros(context->data + context->offset, 20)) {
+        CHECK(read_fixed_size_field(context, field, XRP_ISSUE_SIZE));
+        field_t *issuer;
+        CHECK(append_new_field(context, &issuer));
+        issuer->data_type = STI_ACCOUNT;
+        issuer->id = XRP_ACCOUNT_ISSUER;
+        issuer->data.account = (xrp_account_t *) (field->data.ptr);
+        issuer->length = XRP_ACCOUNT_SIZE;
+    } else {
+        CHECK(read_fixed_size_field(context, field, XRP_CURRENCY_SIZE));
+        field_t *currency;
+        CHECK(append_new_field(context, &currency));
+        currency->data_type = STI_CURRENCY;
+        currency->id = XRP_CURRENCY_CURRENCY;
+        currency->data.currency = (xrp_currency_t *) (field->data.ptr);
+        currency->length = XRP_CURRENCY_SIZE;
+    }
+    
     return err;
 }
 
@@ -399,6 +445,9 @@ err_t read_field_value(parseContext_t *context, field_t *field) {
             break;
         case STI_ISSUE:
             err = read_issue(context, field);
+            break;
+        case STI_XCHAIN_BRIDGE:
+            err = read_xchain(context, field);
             break;
         default:
             err.err = NOT_SUPPORTED;
