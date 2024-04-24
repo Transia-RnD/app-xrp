@@ -271,7 +271,7 @@ const char *resolve_field_name(field_t *field) {
             case 29:
                 return "Signature Reward";
             case 30:
-                return "Min Account Create Amount";
+                return "Create Amount";
             case 31:
                 return "LP Token Balance";
         }
