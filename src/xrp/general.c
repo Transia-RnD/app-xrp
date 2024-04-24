@@ -250,3 +250,19 @@ void account_formatter(field_t* field, field_value_t* dst) {
         dst->buf[addr_length] = '\x00';
     }
 }
+
+void xchain_bridge_formatter(field_t* field, field_value_t* dst) {
+    field_t issuing_field_currency;
+    field_value_t issuing_currency;
+    issuing_field_currency.data_type = STI_CURRENCY;
+    issuing_field_currency.data.ptr = (uint8_t*)field->data.ptr + 20;
+    currency_formatter(&issuing_field_currency, &issuing_currency);
+
+    field_t locking_field_currency;
+    field_value_t locking_currency;
+    locking_field_currency.data_type = STI_CURRENCY;
+    locking_field_currency.data.ptr = (uint8_t*)field->data.ptr + 20;
+    currency_formatter(&locking_field_currency, &locking_currency);
+
+    snprintf(dst->buf, sizeof(dst->buf), "%s <-> %s", issuing_currency.buf, locking_currency.buf);
+}
