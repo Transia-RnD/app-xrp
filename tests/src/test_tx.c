@@ -101,7 +101,7 @@ static const char *testcases[] = {
     "../testcases/21-nftoken-create-offer/04-buy-expiration.raw",
     "../testcases/22-nftoken-cancel-offer/01-basic.raw",
     "../testcases/23-nftoken-accept-offer/01-basic.raw",
-    "../testcases/23-nftoken-accept-offer/01-broker.raw",
+    "../testcases/23-nftoken-accept-offer/02-broker.raw",
     "../testcases/24-clawback/01-basic.raw",
     NULL,
 };
