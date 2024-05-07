@@ -1,5 +1,6 @@
 Transaction Type; AMM Withdraw
 Account;   rTooLkitCks     h5mQa67eaa2     JaWHDBnHkpy   
+Flags; Two Asset
 Amount; XRP 0.00005
 Fee; XRP 0.000015
 Amount 2; USD 50

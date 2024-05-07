@@ -1,5 +1,6 @@
 Transaction Type; AMM Withdraw
 Account;   rTooLkitCks     h5mQa67eaa2     JaWHDBnHkpy   
+Flags; LP Token
 Fee; XRP 0.000015
 L P Token In; [object Object]
 Asset; [object Object]
