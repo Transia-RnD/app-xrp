@@ -5,7 +5,7 @@ Bid Min; USD 5
 Issuer;   rExKpRKXNz25    UAjbckCRtQs     JFcSfjL9Er3   
 Bid Max; USD 10
 Issuer;   rExKpRKXNz25    UAjbckCRtQs     JFcSfjL9Er3   
-Auth Accounts; [object Object]
+Account [1];   rExKpRKXNz25    UAjbckCRtQs     JFcSfjL9Er3   
 Asset; XRP
 Asset 2; USD
 Issuer;   rExKpRKXNz25    UAjbckCRtQs     JFcSfjL9Er3   
