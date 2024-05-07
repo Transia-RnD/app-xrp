@@ -1,0 +1,7 @@
+Transaction Type; AMM Withdraw
+Account;   rTooLkitCks     h5mQa67eaa2     JaWHDBnHkpy   
+Amount; XRP 0.000005
+Fee; XRP 0.000015
+L P Token In; [object Object]
+Asset; [object Object]
+Asset2; [object Object]

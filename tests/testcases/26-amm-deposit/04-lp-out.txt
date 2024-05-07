@@ -1,0 +1,6 @@
+Transaction Type; AMM Deposit
+Account;   rTooLkitCks     h5mQa67eaa2     JaWHDBnHkpy   
+Fee; XRP 0.000015
+L P Token Out; [object Object]
+Asset; [object Object]
+Asset2; [object Object]

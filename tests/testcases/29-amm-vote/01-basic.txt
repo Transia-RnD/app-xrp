@@ -1,0 +1,6 @@
+Transaction Type; AMM Vote
+Account;   rTooLkitCks     h5mQa67eaa2     JaWHDBnHkpy   
+Trading Fee; 150
+Fee; XRP 0.000015
+Asset; [object Object]
+Asset2; [object Object]

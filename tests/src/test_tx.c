@@ -103,6 +103,18 @@ static const char *testcases[] = {
     "../testcases/23-nftoken-accept-offer/01-basic.raw",
     "../testcases/23-nftoken-accept-offer/02-broker.raw",
     "../testcases/24-clawback/01-basic.raw",
+    "../testcases/25-amm-create/01-basic.raw",
+    "../testcases/26-amm-deposit/01-one-sided.raw",
+    "../testcases/26-amm-deposit/02-two-sided.raw",
+    "../testcases/26-amm-deposit/03-amount-lp-out.raw",
+    "../testcases/26-amm-deposit/04-lp-out.raw",
+    "../testcases/27-amm-withdraw/01-one-sided.raw",
+    "../testcases/27-amm-withdraw/02-two-sided.raw",
+    "../testcases/27-amm-withdraw/03-amount-lp-out.raw",
+    "../testcases/27-amm-withdraw/04-lp-out.raw",
+    "../testcases/28-amm-bid/01-basic.raw",
+    "../testcases/28-amm-bid/02-min-max.raw",
+    "../testcases/29-amm-vote/01-basic.raw",
     NULL,
 };
 

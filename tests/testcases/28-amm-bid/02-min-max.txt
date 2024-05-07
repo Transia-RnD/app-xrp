@@ -1,0 +1,8 @@
+Transaction Type; AMM Bid
+Account;   rTooLkitCks     h5mQa67eaa2     JaWHDBnHkpy   
+Fee; XRP 0.000015
+Bid Min; [object Object]
+Bid Max; [object Object]
+Auth Accounts; [object Object]
+Asset; [object Object]
+Asset2; [object Object]
