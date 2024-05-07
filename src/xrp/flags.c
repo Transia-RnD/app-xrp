@@ -285,7 +285,7 @@ static void format_nftoken_mint_flags(uint32_t value, field_value_t *dst) {
     //     offset = append_item(dst, offset, "Auto Trustline");
     // }
     if (HAS_FLAG(value, TF_TRANSFERABLE)) {
-        offset = append_item(dst, offset, "Transferable");
+        append_item(dst, offset, "Transferable");
     }
 }
 
@@ -295,7 +295,7 @@ static void format_nftoken_create_offer_flags(uint32_t value, field_value_t *dst
 
     size_t offset = 0;
     if (HAS_FLAG(value, TF_SELL_NFTOKEN)) {
-        offset = append_item(dst, offset, "Sell");
+        append_item(dst, offset, "Sell");
     }
 }
 
@@ -327,7 +327,7 @@ static void format_amm_deposit_flags(uint32_t value, field_value_t *dst) {
         offset = append_item(dst, offset, "Limit LP Token");
     }
     if (HAS_FLAG(value, TF_TWO_ASSET_IF_EMPTY)) {
-        offset = append_item(dst, offset, "Two Asset If Empty");
+        append_item(dst, offset, "Two Asset If Empty");
     }
 }
 
@@ -353,7 +353,7 @@ static void format_amm_withdraw_flags(uint32_t value, field_value_t *dst) {
         offset = append_item(dst, offset, "Withdraw All");
     }
     if (HAS_FLAG(value, TF_ONE_ASSET_WITHDRAW_ALL)) {
-        offset = append_item(dst, offset, "One Asset Withdraw All");
+        append_item(dst, offset, "One Asset Withdraw All");
     }
 }
 
