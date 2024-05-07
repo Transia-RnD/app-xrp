@@ -207,9 +207,9 @@ const char *resolve_field_name(field_t *field) {
             case 27:
                 return "Next Page Min";
             case 28:
-                return "NFToken Buy Offer";
+                return "NFToken Offer";
             case 29:
-                return "NFToken Sell Offer";
+                return "NFToken Offer";
             // break
         }
     }
@@ -325,6 +325,20 @@ const char *resolve_field_name(field_t *field) {
                 return "DID Document";
             case 27:
                 return "Data";
+        }
+    }
+
+    if (field->data_type == STI_VECTOR256) {
+        switch (field->id) {
+            // vector 256
+            case 1:
+                return "Indexes";
+            case 2:
+                return "Hashes";
+            case 3:
+                return "Amendments";
+            case 4:
+                return "NFTokenOffers";
         }
     }
 

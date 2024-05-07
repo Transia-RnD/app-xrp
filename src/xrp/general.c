@@ -180,6 +180,7 @@ static bool should_format_blob_as_string(field_t* field) {
         case XRP_VL_MEMO_FORMAT:
             return true;
         case XRP_VL_MEMO_DATA:
+        case XRP_VL_URI:
             return is_purely_ascii(field->data.ptr, field->length, false);
         default:
             return false;
@@ -203,6 +204,11 @@ void blob_formatter(field_t* field, field_value_t* dst) {
     if (too_long) {
         strncpy(dst->buf + sizeof(dst->buf) - 4, "...", 4);
     }
+}
+
+void vector_formatter256(field_t* field, field_value_t* dst) {
+    uint16_t count = field->length / XRP_VECTOR256_SIZE;
+    snprintf(dst->buf, sizeof(dst->buf), "%d", count);
 }
 
 void account_formatter(field_t* field, field_value_t* dst) {

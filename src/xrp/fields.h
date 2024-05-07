@@ -36,6 +36,7 @@ typedef enum {
     STI_ARRAY = 0x0F,
     STI_UINT8 = 0x10,
     STI_PATHSET = 0x12,
+    STI_VECTOR256 = 0x13,
     STI_ISSUE = 0x18,
     STI_XCHAIN_BRIDGE = 0x19,
 
@@ -283,6 +284,7 @@ typedef enum {
 
 #define XRP_ACCOUNT_SIZE  20
 #define XRP_CURRENCY_SIZE 20
+#define XRP_VECTOR256_SIZE 32
 #define XRP_ISSUE_SIZE 40
 
 typedef struct {
