@@ -106,16 +106,16 @@ static void format_account_set_transaction_flags(uint32_t value, field_value_t *
 
 static const char *format_account_set_field_flags(uint32_t value) {
 // AccountSet flags for fields SetFlag and ClearFlag
-#define ASF_REQUIRE_DEST                    1
-#define ASF_REQUIRE_AUTH                    2
-#define ASF_DISALLOW_XAH                    3
-#define ASF_DISABLE_MASTER                  4
-#define ASF_ACCOUNT_TXN_ID                  5
-#define ASF_NO_FREEZE                       6
-#define ASF_GLOBAL_FREEZE                   7
-#define ASF_DEFAULT_RIPPLE                  8
-#define ASF_DEPOSIT_AUTH                    9
-#define ASF_AUTH_TOKEN_MINTER               10
+#define ASF_REQUIRE_DEST      1
+#define ASF_REQUIRE_AUTH      2
+#define ASF_DISALLOW_XAH      3
+#define ASF_DISABLE_MASTER    4
+#define ASF_ACCOUNT_TXN_ID    5
+#define ASF_NO_FREEZE         6
+#define ASF_GLOBAL_FREEZE     7
+#define ASF_DEFAULT_RIPPLE    8
+#define ASF_DEPOSIT_AUTH      9
+#define ASF_AUTH_TOKEN_MINTER 10
 // #define ASF_TSH_COLLECT                     11
 #define ASF_DISALLOW_INCOMING_NFTOKEN_OFFER 12
 #define ASF_DISALLOW_INCOMING_CHECK         13
@@ -299,17 +299,17 @@ static void format_nftoken_create_offer_flags(uint32_t value, field_value_t *dst
     }
 }
 
-#define TF_LP_TOKEN 0x00010000u
-#define TF_WITHDRAW_ALL 0x00020000u
+#define TF_LP_TOKEN               0x00010000u
+#define TF_WITHDRAW_ALL           0x00020000u
 #define TF_ONE_ASSET_WITHDRAW_ALL 0x00040000u
-#define TF_SINGLE_ASSET 0x00080000u
-#define TF_TWO_ASSET 0x00100000u
-#define TF_ONE_ASSET_LP_TOKEN 0x00200000u
-#define TF_LIMIT_LP_TOKEN 0x00400000u
-#define TF_TWO_ASSET_IF_EMPTY 0x00800000u
+#define TF_SINGLE_ASSET           0x00080000u
+#define TF_TWO_ASSET              0x00100000u
+#define TF_ONE_ASSET_LP_TOKEN     0x00200000u
+#define TF_LIMIT_LP_TOKEN         0x00400000u
+#define TF_TWO_ASSET_IF_EMPTY     0x00800000u
 
 static void format_amm_deposit_flags(uint32_t value, field_value_t *dst) {
-// AMMDeposit flags
+    // AMMDeposit flags
     size_t offset = 0;
     if (HAS_FLAG(value, TF_LP_TOKEN)) {
         offset = append_item(dst, offset, "LP Token");
@@ -332,7 +332,7 @@ static void format_amm_deposit_flags(uint32_t value, field_value_t *dst) {
 }
 
 static void format_amm_withdraw_flags(uint32_t value, field_value_t *dst) {
-// AMMWithdraw flags
+    // AMMWithdraw flags
     size_t offset = 0;
     if (HAS_FLAG(value, TF_LP_TOKEN)) {
         offset = append_item(dst, offset, "LP Token");
