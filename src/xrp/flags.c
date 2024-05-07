@@ -116,7 +116,6 @@ static const char *format_account_set_field_flags(uint32_t value) {
 #define ASF_DEFAULT_RIPPLE    8
 #define ASF_DEPOSIT_AUTH      9
 #define ASF_AUTH_TOKEN_MINTER 10
-// #define ASF_TSH_COLLECT                     11
 #define ASF_DISALLOW_INCOMING_NFTOKEN_OFFER 12
 #define ASF_DISALLOW_INCOMING_CHECK         13
 #define ASF_DISALLOW_INCOMING_PAYCHAN       14
@@ -145,8 +144,6 @@ static const char *format_account_set_field_flags(uint32_t value) {
             return "Deposit Auth";
         case ASF_AUTH_TOKEN_MINTER:
             return "Auth NFToken Minter";
-        // case ASF_TSH_COLLECT:
-        //     return "TSH Collect";
         case ASF_DISALLOW_INCOMING_NFTOKEN_OFFER:
             return "Disallow NFToken Offer";
         case ASF_DISALLOW_INCOMING_CHECK:

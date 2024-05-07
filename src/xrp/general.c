@@ -52,14 +52,10 @@ static const char* resolve_transaction_name(uint16_t value) {
             return "Cancel Escrow";
         case TRANSACTION_SET_REGULAR_KEY:
             return "Set Regular Key";
-        // case TRANSACTION_NICKNAME_SET:
-        //     return "Nickname Set";
         case TRANSACTION_OFFER_CREATE:
             return "Create Offer";
         case TRANSACTION_OFFER_CANCEL:
             return "Cancel Offer";
-        // case TRANSACTION_CONTRACT:
-        //     return "Contract";
         case TRANSACTION_TICKET_CREATE:
             return "Ticket Create";
         case TRANSACTION_TICKET_CANCEL:
