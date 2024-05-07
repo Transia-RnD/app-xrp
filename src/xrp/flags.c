@@ -230,7 +230,7 @@ static void format_trust_set_flags(uint32_t value, field_value_t *dst) {
 
     size_t offset = 0;
     if (HAS_FLAG(value, TF_SETF_AUTH)) {
-        offset = append_item(dst, offset, "Setf Auth");
+        offset = append_item(dst, offset, "Set Auth");
     }
 
     if (HAS_FLAG(value, TF_SET_NO_RIPPLE)) {
