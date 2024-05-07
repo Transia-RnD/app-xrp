@@ -108,7 +108,7 @@ static const char *format_account_set_field_flags(uint32_t value) {
 // AccountSet flags for fields SetFlag and ClearFlag
 #define ASF_REQUIRE_DEST      1
 #define ASF_REQUIRE_AUTH      2
-#define ASF_DISALLOW_XAH      3
+#define ASF_DISALLOW_XRP      3
 #define ASF_DISABLE_MASTER    4
 #define ASF_ACCOUNT_TXN_ID    5
 #define ASF_NO_FREEZE         6
@@ -129,8 +129,8 @@ static const char *format_account_set_field_flags(uint32_t value) {
             return "Require Dest";
         case ASF_REQUIRE_AUTH:
             return "Require Auth";
-        case ASF_DISALLOW_XAH:
-            return "Disallow XAH";
+        case ASF_DISALLOW_XRP:
+            return "Disallow XRP";
         case ASF_DISABLE_MASTER:
             return "Disable Master";
         case ASF_ACCOUNT_TXN_ID:
