@@ -4,5 +4,6 @@ Fee; XRP 0.000015
 Bid Min; [object Object]
 Bid Max; [object Object]
 Auth Accounts; [object Object]
-Asset; [object Object]
-Asset2; [object Object]
+Asset; XRP
+Asset 2; USD
+Issuer;   rExKpRKXNz25    UAjbckCRtQs     JFcSfjL9Er3   

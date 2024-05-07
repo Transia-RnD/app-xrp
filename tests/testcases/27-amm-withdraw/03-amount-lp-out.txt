@@ -4,5 +4,6 @@ Flags; One Asset LP Token
 Amount; XRP 0.000005
 Fee; XRP 0.000015
 L P Token In; [object Object]
-Asset; [object Object]
-Asset2; [object Object]
+Asset; XRP
+Asset 2; USD
+Issuer;   rExKpRKXNz25    UAjbckCRtQs     JFcSfjL9Er3   
