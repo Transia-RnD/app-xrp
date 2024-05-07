@@ -338,7 +338,7 @@ const char *resolve_field_name(field_t *field) {
             case 3:
                 return "Amendments";
             case 4:
-                return "NFTokenOffers";
+                return "NFToken Offers";
         }
     }
 
