@@ -3,4 +3,4 @@ Account;   rTooLkitCks     h5mQa67eaa2     JaWHDBnHkpy
 Flags; Set Auth
 Limit Amount; USD 123
 Issuer;   rsP3mgGb2tcY    UrxiLFiHJiQ     XhsziegtwBc   
-Fee; XAH 0.00001
+Fee; XRP 0.00001
