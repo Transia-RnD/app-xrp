@@ -32,7 +32,6 @@ The XRP wallet app comes with the following features:
   - CheckCreate
   - Clawback
   - DepositPreauth
-  - DepositPreauth
   - EscrowCancel
   - EscrowCreate
   - EscrowFinish

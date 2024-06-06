@@ -106,16 +106,16 @@ static void format_account_set_transaction_flags(uint32_t value, field_value_t *
 
 static const char *format_account_set_field_flags(uint32_t value) {
 // AccountSet flags for fields SetFlag and ClearFlag
-#define ASF_REQUIRE_DEST      1
-#define ASF_REQUIRE_AUTH      2
-#define ASF_DISALLOW_XRP      3
-#define ASF_DISABLE_MASTER    4
-#define ASF_ACCOUNT_TXN_ID    5
-#define ASF_NO_FREEZE         6
-#define ASF_GLOBAL_FREEZE     7
-#define ASF_DEFAULT_RIPPLE    8
-#define ASF_DEPOSIT_AUTH      9
-#define ASF_AUTH_TOKEN_MINTER 10
+#define ASF_REQUIRE_DEST                    1
+#define ASF_REQUIRE_AUTH                    2
+#define ASF_DISALLOW_XRP                    3
+#define ASF_DISABLE_MASTER                  4
+#define ASF_ACCOUNT_TXN_ID                  5
+#define ASF_NO_FREEZE                       6
+#define ASF_GLOBAL_FREEZE                   7
+#define ASF_DEFAULT_RIPPLE                  8
+#define ASF_DEPOSIT_AUTH                    9
+#define ASF_AUTH_TOKEN_MINTER               10
 #define ASF_DISALLOW_INCOMING_NFTOKEN_OFFER 12
 #define ASF_DISALLOW_INCOMING_CHECK         13
 #define ASF_DISALLOW_INCOMING_PAYCHAN       14
