@@ -37,8 +37,6 @@ typedef enum {
     STI_UINT8 = 0x10,
     STI_PATHSET = 0x12,
     STI_VECTOR256 = 0x13,
-    STI_ISSUE = 0x18,
-    STI_XCHAIN_BRIDGE = 0x19,
 
     // Custom field types
     STI_CURRENCY = 0xF0,
@@ -127,8 +125,6 @@ typedef enum {
 #define XRP_VL_MEMO_FORMAT     0x0E
 #define XRP_VL_FULFILLMENT     0x10
 #define XRP_VL_CONDITION       0x11
-#define XRP_VL_DID_DOCUMENT    0x1A
-#define XRP_VL_DATA            0x1B
 // AccountID
 #define XRP_ACCOUNT_ACCOUNT                    0x01
 #define XRP_ACCOUNT_OWNER                      0x02
@@ -138,12 +134,6 @@ typedef enum {
 #define XRP_ACCOUNT_UNAUTHORIZE                0x06
 #define XRP_ACCOUNT_REGULAR_KEY                0x08
 #define XRP_ACCOUNT_NFTOKEN_MINTER             0x09
-#define XRP_ACCOUNT_OTHER_CHAIN_SOURCE         0x12
-#define XRP_ACCOUNT_OTHER_CHAIN_DESTINATION    0x13
-#define XRP_ACCOUNT_ATTESTATION_SIGNER_ACCOUNT 0x14
-#define XRP_ACCOUNT_ATTESTATION_REWARD_ACCOUNT 0x15
-#define XRP_ACCOUNT_LOCKING_CHAIN_DOOR         0x16
-#define XRP_ACCOUNT_ISSUING_CHAIN_DOOR         0x17
 // VECTOR256
 #define XRP_VECTOR256_NF_TOKEN_OFFERS 0x04
 // STOBJECT
@@ -152,10 +142,6 @@ typedef enum {
 #define XRP_STOBJECT_NFTOKEN                                              0x0C
 #define XRP_STOBJECT_SIGNER                                               0x10
 #define XRP_STOBJECT_AUTH_ACCOUNT                                         0x1B
-#define XRP_STOBJECT_XCHAIN_CLAIM_PROOF_SIG                               0x1C
-#define XRP_STOBJECT_XCHAIN_CREATE_ACCOUNT_PROOF_SIG                      0x1D
-#define XRP_STOBJECT_XCHAIN_CLAIM_ATTESTATION_COLLECTION_ELEMENT          0x1E
-#define XRP_STOBJECT_XCHAIN_CREATE_ACCOUNT_ATTESTATION_COLLECTION_ELEMENT 0x1F
 // STARRAY
 #define XRP_STARRAY_SIGNERS                            0x03
 #define XRP_STARRAY_SIGNER_ENTRIES                     0x04
@@ -163,18 +149,9 @@ typedef enum {
 #define XRP_STARRAY_NFTOKENS                           0x0A
 #define XRP_STARRAY_MAJORITIES                         0x10
 #define XRP_STARRAY_DISABLED_VALIDATORS                0x11
-#define XRP_STARRAY_XCHAIN_CLAIM_ATTESTATIONS          0x15
-#define XRP_STARRAY_XCHAIN_CREATE_ACCOUNT_ATTESTATIONS 0x16
 #define XRP_STARRAY_AUTH_ACCOUNTS                      0x19
-// ISSUE
-#define XRP_ISSUE_LOCKING_CHAIN_ISSUE 0x01
-#define XRP_ISSUE_ISSUING_CHAIN_ISSUE 0x02
-#define XRP_ISSUE_ASSET               0x03
-#define XRP_ISSUE_ASSET2              0x04
 // CURRENCY
 #define XRP_CURRENCY_CURRENCY 0x01
-// XCHAIN BRIDGE
-#define XRP_XCHAIN_BRIDGE 0x01
 
 // Array of type one is reserved for end-of-array marker so this
 // constant cannot possibly collide with anything in the future
@@ -187,7 +164,6 @@ typedef enum {
 #define XRP_ACCOUNT_SIZE   20
 #define XRP_CURRENCY_SIZE  20
 #define XRP_VECTOR256_SIZE 32
-#define XRP_ISSUE_SIZE     40
 
 typedef struct {
     uint8_t buf[XRP_ACCOUNT_SIZE];
@@ -196,10 +172,6 @@ typedef struct {
 typedef struct {
     uint8_t buf[XRP_CURRENCY_SIZE];
 } xrp_currency_t;
-
-typedef struct {
-    uint8_t buf[XRP_ISSUE_SIZE];
-} xrp_issue_t;
 
 typedef struct {
     uint8_t type;

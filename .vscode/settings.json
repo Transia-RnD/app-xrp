@@ -1,7 +1,11 @@
 {
-    "files.associations": {
-        "*.h": "c"
-    },
-    "C_Cpp.clang_format_path": "/usr/bin/clang-format",
-    "editor.formatOnSave": true
+  "files.associations": {
+    "*.h": "c"
+  },
+  "C_Cpp.clang_format_path": "/usr/bin/clang-format",
+  "editor.formatOnSave": true,
+  "ledgerDevTools.appSettings": {
+    "selectedUseCase": "release",
+    "selectedDevice": "Nano S"
+  }
 }

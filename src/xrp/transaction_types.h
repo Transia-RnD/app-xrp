@@ -55,16 +55,6 @@
 #define TRANSACTION_AMM_VOTE                               38
 #define TRANSACTION_AMM_BID                                39
 #define TRANSACTION_AMM_DELETE                             40
-#define TRANSACTION_XCHAIN_CREATE_CLAIM_ID                 41
-#define TRANSACTION_XCHAIN_COMMIT                          42
-#define TRANSACTION_XCHAIN_CLAIM                           43
-#define TRANSACTION_XCHAIN_ACCOUNT_CREATE_COMMIT           44
-#define TRANSACTION_XCHAIN_ADD_CLAIM_ATTESTATION           45
-#define TRANSACTION_XCHAIN_ADD_ACCOUNT_CREATE_ATTESTATION  46
-#define TRANSACTION_XCHAIN_MODIFY_BRIDGE                   47
-#define TRANSACTION_XCHAIN_CREATE_BRIDGE                   48
-#define TRANSACTION_DID_SET                                49
-#define TRANSACTION_DID_DELETE                             50
 
 static inline bool is_transaction_type_field(field_t *field) {
     return field->data_type == STI_UINT16 && field->id == XRP_UINT16_TRANSACTION_TYPE;
