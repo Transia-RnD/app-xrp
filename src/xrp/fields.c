@@ -203,6 +203,10 @@ const char *resolve_field_name(field_t *field) {
                 return "Fulfillment";
             case 17:
                 return "Condition";
+            case 26:
+                return "DID Document";
+            case 27:
+                return "Data";
         }
     }
 
@@ -232,6 +236,18 @@ const char *resolve_field_name(field_t *field) {
                 return "Regular Key";
             case 9:
                 return "NFToken Minter";
+            case 18:
+                return "Other Chain Source";
+            case 19:
+                return "Other Chain Destination";
+            case 20:
+                return "Attestation Signer Account";
+            case 21:
+                return "Attestation Reward Account";
+            case 22:
+                return "Locking Chain Door";
+            case 23:
+                return "Issuing Chain Door";
         }
     }
 
@@ -249,6 +265,14 @@ const char *resolve_field_name(field_t *field) {
                 return "Signer";
             case 27:
                 return "Auth Account";
+            case 28:
+                return "XChain Claim Proof Sig.";
+            case 29:
+                return "XChain Create Account Proof Sig.";
+            case 30:
+                return "XChain Claim Attestation Collection Element";
+            case 31:
+                return "XChain Create Account Attestation Collection Element";
         }
     }
 
@@ -264,6 +288,10 @@ const char *resolve_field_name(field_t *field) {
                 return "Memos";
             case 10:
                 return "NFTokens";
+            case 21:
+                return "XChain Claim Attestations";
+            case 22:
+                return "XChain Create Account Attestations";
             case 25:
                 return "Auth Accounts";
         }
@@ -288,6 +316,26 @@ const char *resolve_field_name(field_t *field) {
         switch (field->id) {
             case 1:
                 return "Currency";
+        }
+    }
+
+    if (field->data_type == STI_ISSUE) {
+        switch (field->id) {
+            case 1:
+                return "Locking Chain Issue";
+            case 2:
+                return "Issuing Chain Issue";
+            case 3:
+                return "Asset";
+            case 4:
+                return "Asset 2";
+        }
+    }
+
+    if (field->data_type == STI_XCHAIN_BRIDGE) {
+        switch (field->id) {
+            case 1:
+                return "XChainBridge";
         }
     }
 

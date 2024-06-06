@@ -104,6 +104,26 @@ static const char* resolve_transaction_name(uint16_t value) {
             return "AMM Bid";
         case TRANSACTION_AMM_DELETE:
             return "AMM Delete";
+        case TRANSACTION_XCHAIN_CREATE_CLAIM_ID:
+            return "XChain Create Claim ID";
+        case TRANSACTION_XCHAIN_COMMIT:
+            return "XChain Commit";
+        case TRANSACTION_XCHAIN_CLAIM:
+            return "XChain Claim";
+        case TRANSACTION_XCHAIN_ACCOUNT_CREATE_COMMIT:
+            return "XChain Account Create Commit";
+        case TRANSACTION_XCHAIN_ADD_CLAIM_ATTESTATION:
+            return "XChain Add Claim Attestation";
+        case TRANSACTION_XCHAIN_ADD_ACCOUNT_CREATE_ATTESTATION:
+            return "XChain Add Account Create Attestation";
+        case TRANSACTION_XCHAIN_MODIFY_BRIDGE:
+            return "XChain Modify Bridge";
+        case TRANSACTION_XCHAIN_CREATE_BRIDGE:
+            return "XChain Create Bridge";
+        case TRANSACTION_DID_SET:
+            return "Did Set";
+        case TRANSACTION_DID_DELETE:
+            return "Did Delete";
         default:
             return "Unknown";
     }
@@ -231,4 +251,20 @@ void account_formatter(field_t* field, field_value_t* dst) {
         memmove(dst->buf, address, addr_length);
         dst->buf[addr_length] = '\x00';
     }
+}
+
+void xchain_bridge_formatter(field_t* field, field_value_t* dst) {
+    field_t issuing_field_currency;
+    field_value_t issuing_currency;
+    issuing_field_currency.data_type = STI_CURRENCY;
+    issuing_field_currency.data.ptr = (uint8_t*)field->data.ptr + 20;
+    currency_formatter(&issuing_field_currency, &issuing_currency);
+
+    field_t locking_field_currency;
+    field_value_t locking_currency;
+    locking_field_currency.data_type = STI_CURRENCY;
+    locking_field_currency.data.ptr = (uint8_t*)field->data.ptr + 20;
+    currency_formatter(&locking_field_currency, &locking_currency);
+
+    snprintf(dst->buf, sizeof(dst->buf), "%s <-> %s", issuing_currency.buf, locking_currency.buf);
 }
