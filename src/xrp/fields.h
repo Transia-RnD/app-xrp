@@ -126,30 +126,30 @@ typedef enum {
 #define XRP_VL_FULFILLMENT     0x10
 #define XRP_VL_CONDITION       0x11
 // AccountID
-#define XRP_ACCOUNT_ACCOUNT                    0x01
-#define XRP_ACCOUNT_OWNER                      0x02
-#define XRP_ACCOUNT_DESTINATION                0x03
-#define XRP_ACCOUNT_ISSUER                     0x04
-#define XRP_ACCOUNT_AUTHORIZE                  0x05
-#define XRP_ACCOUNT_UNAUTHORIZE                0x06
-#define XRP_ACCOUNT_REGULAR_KEY                0x08
-#define XRP_ACCOUNT_NFTOKEN_MINTER             0x09
+#define XRP_ACCOUNT_ACCOUNT        0x01
+#define XRP_ACCOUNT_OWNER          0x02
+#define XRP_ACCOUNT_DESTINATION    0x03
+#define XRP_ACCOUNT_ISSUER         0x04
+#define XRP_ACCOUNT_AUTHORIZE      0x05
+#define XRP_ACCOUNT_UNAUTHORIZE    0x06
+#define XRP_ACCOUNT_REGULAR_KEY    0x08
+#define XRP_ACCOUNT_NFTOKEN_MINTER 0x09
 // VECTOR256
 #define XRP_VECTOR256_NF_TOKEN_OFFERS 0x04
 // STOBJECT
-#define XRP_STOBJECT_MEMO                                                 0x0A
-#define XRP_STOBJECT_SIGNER_ENTRY                                         0x0B
-#define XRP_STOBJECT_NFTOKEN                                              0x0C
-#define XRP_STOBJECT_SIGNER                                               0x10
-#define XRP_STOBJECT_AUTH_ACCOUNT                                         0x1B
+#define XRP_STOBJECT_MEMO         0x0A
+#define XRP_STOBJECT_SIGNER_ENTRY 0x0B
+#define XRP_STOBJECT_NFTOKEN      0x0C
+#define XRP_STOBJECT_SIGNER       0x10
+#define XRP_STOBJECT_AUTH_ACCOUNT 0x1B
 // STARRAY
-#define XRP_STARRAY_SIGNERS                            0x03
-#define XRP_STARRAY_SIGNER_ENTRIES                     0x04
-#define XRP_STARRAY_MEMOS                              0x09
-#define XRP_STARRAY_NFTOKENS                           0x0A
-#define XRP_STARRAY_MAJORITIES                         0x10
-#define XRP_STARRAY_DISABLED_VALIDATORS                0x11
-#define XRP_STARRAY_AUTH_ACCOUNTS                      0x19
+#define XRP_STARRAY_SIGNERS             0x03
+#define XRP_STARRAY_SIGNER_ENTRIES      0x04
+#define XRP_STARRAY_MEMOS               0x09
+#define XRP_STARRAY_NFTOKENS            0x0A
+#define XRP_STARRAY_MAJORITIES          0x10
+#define XRP_STARRAY_DISABLED_VALIDATORS 0x11
+#define XRP_STARRAY_AUTH_ACCOUNTS       0x19
 // CURRENCY
 #define XRP_CURRENCY_CURRENCY 0x01
 
