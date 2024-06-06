@@ -13,8 +13,6 @@ from ecdsa.util import sigdecode_der  # type: ignore [import]
 from ecdsa import VerifyingKey, SECP256k1  # type: ignore [import]
 
 from ragger.bip import calculate_public_key_and_chaincode, CurveChoice
-from ragger.navigator import NavInsID, NavIns, Navigator
-from ragger.firmware import Firmware
 
 
 ROOT_SCREENSHOT_PATH = Path(__file__).parent.resolve()
@@ -24,19 +22,19 @@ TX_PREFIX_SINGLE = [0x53, 0x54, 0x58, 0x00]
 TX_PREFIX_MULTI = [0x53, 0x4D, 0x54, 0x00]
 
 
-def pop_size_prefixed_buf_from_buf(buffer:bytes):
-    """ Returns remainder, data_len, data """
+def pop_size_prefixed_buf_from_buf(buffer: bytes) -> Tuple[bytes, int, bytes]:
+    """Returns remainder, data_len, data"""
 
     data_len = buffer[0]
-    return buffer[1+data_len:], data_len, buffer[1:data_len+1]
+    return buffer[1 + data_len :], data_len, buffer[1 : data_len + 1]
 
 
 def unpack_configuration_response(reply: bytes) -> str:
-    """ Unpack reply for 'get_configuration' APDU:
-           TEST (1)
-           MAJOR (1)
-           MINOR (1)
-           PATCH (1)
+    """Unpack reply for 'get_configuration' APDU:
+    TEST (1)
+    MAJOR (1)
+    MINOR (1)
+    PATCH (1)
     """
 
     assert len(reply) == 4
@@ -47,9 +45,9 @@ def unpack_configuration_response(reply: bytes) -> str:
 
 
 def unpack_get_public_key_response(reply: bytes) -> Tuple[int, str, int, str]:
-    """ Unpack reply for 'get_public_key' APDU:
-           pub_key (65)
-           pub_key_str (65 * 2)
+    """Unpack reply for 'get_public_key' APDU:
+    pub_key (65)
+    pub_key_str (65 * 2)
     """
 
     reply, key_len, key_data = pop_size_prefixed_buf_from_buf(reply)
@@ -57,57 +55,8 @@ def unpack_get_public_key_response(reply: bytes) -> Tuple[int, str, int, str]:
     return key_len, key_data.hex(), len(chain_data), chain_data.hex()
 
 
-def util_navigate(
-        firmware: Firmware,
-        navigator: Navigator,
-        test_name: Path,
-        text: str = "",
-        screen_change: bool = True,
-) -> None:
-    """ Navigate in the menus with conditions """
-
-    assert text
-    valid_instr: list[NavIns | NavInsID] = []
-
-    if firmware.device.startswith("nano"):
-        text = text.split("_")[0]
-        nav_inst = NavInsID.RIGHT_CLICK
-        valid_instr.append(NavInsID.BOTH_CLICK)
-
-    else:
-        if text == "Approve":
-            text = "Confirm"
-            valid_instr.append(NavInsID.USE_CASE_ADDRESS_CONFIRMATION_CONFIRM)
-            nav_inst = NavInsID.USE_CASE_REVIEW_TAP
-
-        elif text == "Reject_pubkey":
-            text = "Cancel"
-            valid_instr.append(NavInsID.USE_CASE_CHOICE_REJECT)
-            nav_inst = NavInsID.USE_CASE_REVIEW_REJECT
-
-        elif text == "Reject_sign":
-            text = "Reject transaction"
-            valid_instr.append(NavInsID.USE_CASE_CHOICE_CONFIRM)
-            nav_inst = NavInsID.USE_CASE_REVIEW_REJECT
-
-        elif text == "Sign transaction":
-            text = "Hold to confirm"
-            valid_instr.append(NavInsID.USE_CASE_REVIEW_CONFIRM)
-            nav_inst = NavInsID.USE_CASE_REVIEW_TAP
-
-        else:
-            raise ValueError(f'Wrong text "{text}"')
-
-    navigator.navigate_until_text_and_compare(nav_inst,
-                                              valid_instr,  # type: ignore [arg-type]
-                                              text,
-                                              ROOT_SCREENSHOT_PATH,
-                                              test_name,
-                                              screen_change_after_last_instruction=screen_change)
-
-
 def verify_version(version: str) -> None:
-    """ Verify the app version, based on defines in Makefile """
+    """Verify the app version, based on defines in Makefile"""
 
     print(f"version: {version}")
     parent = Path(ROOT_SCREENSHOT_PATH).parent.resolve()
@@ -132,11 +81,12 @@ def verify_version(version: str) -> None:
 
 
 def verify_ecdsa_secp256k1(tx: bytes, sig: bytes, raw_tx_path: str) -> bool:
-    """ Verify the transaction signature """
+    """Verify the transaction signature"""
 
     # Get Public key
     key_data, _ = calculate_public_key_and_chaincode(
-        CurveChoice.Secp256k1, DEFAULT_PATH, compress_public_key=True)
+        CurveChoice.Secp256k1, DEFAULT_PATH, compress_public_key=True
+    )
     pub_key = bytearray.fromhex(key_data)
 
     # Check single/multi signature
