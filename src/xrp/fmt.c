@@ -60,9 +60,6 @@ void format_field(field_t* field, field_value_t* dst) {
         case STI_ISSUE:
             currency_formatter(field, dst);
             break;
-        case STI_XCHAIN_BRIDGE:
-            strncpy(dst->buf, "[Issuer <-> Locking]", sizeof(dst->buf));
-            break;
         default:
             strncpy(dst->buf, "[Not implemented]", sizeof(dst->buf));
             break;

@@ -38,7 +38,6 @@ typedef enum {
     STI_PATHSET = 0x12,
     STI_VECTOR256 = 0x13,
     STI_ISSUE = 0x18,
-    STI_XCHAIN_BRIDGE = 0x19,
 
     // Custom field types
     STI_CURRENCY = 0xF0,
@@ -152,10 +151,6 @@ typedef enum {
 #define XRP_STOBJECT_NFTOKEN                                              0x0C
 #define XRP_STOBJECT_SIGNER                                               0x10
 #define XRP_STOBJECT_AUTH_ACCOUNT                                         0x1B
-#define XRP_STOBJECT_XCHAIN_CLAIM_PROOF_SIG                               0x1C
-#define XRP_STOBJECT_XCHAIN_CREATE_ACCOUNT_PROOF_SIG                      0x1D
-#define XRP_STOBJECT_XCHAIN_CLAIM_ATTESTATION_COLLECTION_ELEMENT          0x1E
-#define XRP_STOBJECT_XCHAIN_CREATE_ACCOUNT_ATTESTATION_COLLECTION_ELEMENT 0x1F
 // STARRAY
 #define XRP_STARRAY_SIGNERS                            0x03
 #define XRP_STARRAY_SIGNER_ENTRIES                     0x04
@@ -163,18 +158,12 @@ typedef enum {
 #define XRP_STARRAY_NFTOKENS                           0x0A
 #define XRP_STARRAY_MAJORITIES                         0x10
 #define XRP_STARRAY_DISABLED_VALIDATORS                0x11
-#define XRP_STARRAY_XCHAIN_CLAIM_ATTESTATIONS          0x15
-#define XRP_STARRAY_XCHAIN_CREATE_ACCOUNT_ATTESTATIONS 0x16
 #define XRP_STARRAY_AUTH_ACCOUNTS                      0x19
 // ISSUE
-#define XRP_ISSUE_LOCKING_CHAIN_ISSUE 0x01
-#define XRP_ISSUE_ISSUING_CHAIN_ISSUE 0x02
 #define XRP_ISSUE_ASSET               0x03
 #define XRP_ISSUE_ASSET2              0x04
 // CURRENCY
 #define XRP_CURRENCY_CURRENCY 0x01
-// XCHAIN BRIDGE
-#define XRP_XCHAIN_BRIDGE 0x01
 
 // Array of type one is reserved for end-of-array marker so this
 // constant cannot possibly collide with anything in the future
