@@ -64,6 +64,8 @@ const char *resolve_field_name(field_t *field) {
                 return "Wallet Size";
             case 14:
                 return "Destination Tag";
+            case 15:
+                return "Last Update Time";
             case 20:
                 return "Quality In";
             case 21:
@@ -94,6 +96,16 @@ const char *resolve_field_name(field_t *field) {
                 return "Ticket Sequence";
             case 42:
                 return "NFToken Taxon";
+            case 51:
+                return "Oracle Document ID";
+        }
+    }
+
+    if (field->data_type == STI_UINT64) {
+        switch (field->id) {
+            // 64-bit integers
+            case 24:
+                return "Maximum Amount";
         }
     }
 
@@ -101,6 +113,13 @@ const char *resolve_field_name(field_t *field) {
         switch (field->id) {
             case 1:
                 return "Email Hash";
+        }
+    }
+
+    if (field->data_type == STI_HASH192) {
+        switch (field->id) {
+            case 1:
+                return "MP Token Issuance ID";
         }
     }
 
@@ -129,6 +148,8 @@ const char *resolve_field_name(field_t *field) {
                 return "NFToken Offer";
             case 29:
                 return "NFToken Offer";
+            case 34:
+                return "Domain ID";
         }
     }
 
@@ -203,6 +224,18 @@ const char *resolve_field_name(field_t *field) {
                 return "Fulfillment";
             case 17:
                 return "Condition";
+            case 26:
+                return "DID Document";
+            case 27:
+                return "Data";
+            case 28:
+                return "Asset Class";
+            case 29:
+                return "Provider";
+            case 30:
+                return "MP Token Metadata";
+            case 31:
+                return "Credential Type";
         }
     }
 
@@ -232,6 +265,10 @@ const char *resolve_field_name(field_t *field) {
                 return "Regular Key";
             case 9:
                 return "NFToken Minter";
+            case 11:
+                return "Holder";
+            case 24:
+                return "Subject";
         }
     }
 
@@ -249,6 +286,10 @@ const char *resolve_field_name(field_t *field) {
                 return "Signer";
             case 27:
                 return "Auth Account";
+            case 32:
+                return "Price Data";
+            case 33:
+                return "Credential";
         }
     }
 
@@ -264,14 +305,24 @@ const char *resolve_field_name(field_t *field) {
                 return "Memos";
             case 10:
                 return "NFTokens";
+            case 24:
+                return "Price Data Series";
             case 25:
                 return "Auth Accounts";
+            case 26:
+                return "Authorize Credentials";
+            case 27:
+                return "Unauthorize Credentials";
+            case 28:
+                return "Accepted Credentials";
         }
     }
 
     if (field->data_type == STI_UINT8) {
         switch (field->id) {
             // 8-bit integers
+            case 5:
+                return "Asset Scale";
             case 16:
                 return "Tick Size";
         }

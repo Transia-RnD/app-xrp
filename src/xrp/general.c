@@ -104,6 +104,34 @@ static const char* resolve_transaction_name(uint16_t value) {
             return "AMM Bid";
         case TRANSACTION_AMM_DELETE:
             return "AMM Delete";
+        case TRANSACTION_DID_SET:
+            return "DID Set";
+        case TRANSACTION_DID_DELETE:
+            return "DID Delete";
+        case TRANSACTION_ORACLE_SET:
+            return "Oracle Set";
+        case TRANSACTION_ORACLE_DELETE:
+            return "Oracle Delete";
+        case TRANSACTION_MPTOKEN_ISSUANCE_CREATE:
+            return "MPToken Issuance Create";
+        case TRANSACTION_MPTOKEN_ISSUANCE_DESTROY:
+            return "MPToken Issuance Destroy";
+        case TRANSACTION_MPTOKEN_ISSUANCE_SET:
+            return "MPToken Issuance Set";
+        case TRANSACTION_MPTOKEN_AUTHORIZE:
+            return "MPToken Authorize";
+        case TRANSACTION_CREDENTIAL_CREATE:
+            return "Credential Create";
+        case TRANSACTION_CREDENTIAL_ACCEPT:
+            return "Credential Accept";
+        case TRANSACTION_CREDENTIAL_DELETE:
+            return "Credential Delete";
+        case TRANSACTION_NFTOKEN_MODIFY:
+            return "NFToken Modify";
+        case TRANSACTION_PERMISSIONED_DOMAIN_SET:
+            return "Permissioned Domain Set";
+        case TRANSACTION_PERMISSIONED_DOMAIN_DELETE:
+            return "Permissioned Domain Delete";
         default:
             return "Unknown";
     }
@@ -135,11 +163,23 @@ void uint32_formatter(field_t* field, field_value_t* dst) {
     }
 }
 
+void uint64_formatter(field_t* field, field_value_t* dst) {
+    uint32_t value = field->data.u64;
+    snprintf(dst->buf, sizeof(dst->buf), "%u", value);
+}
+
 void hash_formatter128(field_t* field, field_value_t* dst) {
     read_hex(dst->buf,
              sizeof(dst->buf),
              field->data.hash128->buf,
              sizeof(field->data.hash128->buf));
+}
+
+void hash_formatter192(field_t* field, field_value_t* dst) {
+    read_hex(dst->buf,
+             sizeof(dst->buf),
+             field->data.hash192->buf,
+             sizeof(field->data.hash192->buf));
 }
 
 void hash_formatter256(field_t* field, field_value_t* dst) {

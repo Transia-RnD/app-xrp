@@ -384,8 +384,19 @@ err_t read_field_value(parseContext_t *context, field_t *field) {
             field->data.u32 = field->data.ptr[3] | (field->data.ptr[2] << 8) |
                               (field->data.ptr[1] << 16) | (field->data.ptr[0] << 24);
             break;
+        case STI_UINT64:
+            CHECK(read_fixed_size_field(context, field, 8));
+            field->data.u64 =
+                ((uint64_t) field->data.ptr[7]) | ((uint64_t) field->data.ptr[6] << 8) |
+                ((uint64_t) field->data.ptr[5] << 16) | ((uint64_t) field->data.ptr[4] << 24) |
+                ((uint64_t) field->data.ptr[3] << 32) | ((uint64_t) field->data.ptr[2] << 40) |
+                ((uint64_t) field->data.ptr[1] << 48) | ((uint64_t) field->data.ptr[0] << 56);
+            break;
         case STI_HASH128:
             err = read_fixed_size_field(context, field, sizeof(hash128_t));
+            break;
+        case STI_HASH192:
+            err = read_fixed_size_field(context, field, sizeof(hash192_t));
             break;
         case STI_HASH256:
             err = read_fixed_size_field(context, field, sizeof(hash256_t));
